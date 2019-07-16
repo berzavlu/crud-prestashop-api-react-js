@@ -1,0 +1,113 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "react",
+    "prettier",
+    "react-hooks"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "tabWidth": 2,
+        "semi": false,
+        "singleQuote": true,
+        "jsxSingleQuote": true,
+        "arrowParens": "always",
+        "spaceBeforeFunctionParen": true,
+        "jsxMaxPropsPerLine": 1,
+        "maxLen": 500
+      }
+    ],
+    "semi": [
+      2,
+      "never"
+    ],
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "object-curly-newline": [
+      "error",
+      {
+        "multiline": true
+      }
+    ],
+    "import/extensions": 0,
+    "no-console": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "react/jsx-filename-extension": 0,
+    "linebreak-style": 0,
+    "template-curly-spacing": "off",
+    "indent": "off",
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ], // comillas simples
+    "max-len": [
+      "error",
+      {
+        "code": 500,
+        "tabWidth": 2
+      }
+    ], // máximo length por fila
+    "no-empty": "error", // no lineas vacías
+    "no-multiple-empty-lines": [
+      2,
+      {
+        "max": 1
+      }
+    ], // máximo 1 fila vacía
+    "react/prop-types": 0, // los proptypes no son obligatorios, pero es buena práctica
+    "react/react-in-jsx-scope": "off", // no es necesario declarar react en un archivo
+    "lines-between-class-members": [
+      "error",
+      "always",
+      {
+        "exceptAfterSingleLine": true
+      }
+    ], // nunca se deja espacio despues de las clases
+    "space-before-function-paren": [
+      "error",
+      {
+        // espacios despues del nombre de la función
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "react/jsx-one-expression-per-line": 0, // inhabilita sola una expreción por linea
+    "arrow-body-style": 0,
+    "react/no-array-index-key": 0,
+    "quote-props": [
+      "error",
+      "as-needed"
+    ],
+    "no-plusplus": 0,
+    "react/no-danger": 0,
+    "no-underscore-dangle": 0,
+    "camelcase": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "comma-dangle": "off",
+    "react/button-has-type": 0,
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
+  }
+}
