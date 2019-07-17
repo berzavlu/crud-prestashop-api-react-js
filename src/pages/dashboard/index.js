@@ -39,9 +39,14 @@ const Dashboard = () => {
   console.log(productos)
   return (
     <div>
-      {productos.map((e) => {
+      {productos.map((e, i) => {
         return (
-          <div>
+          <div key={i}>
+            <img
+              style={{ width: '150', height: '150px' }}
+              src={`https://lulumuebles.com.pe/api/images/products/${e.product.id}/${e.product.associations.images[0].id}`}
+              alt='img'
+            />
             {e.product.name} - Precio: {e.product.price}
           </div>
         )
