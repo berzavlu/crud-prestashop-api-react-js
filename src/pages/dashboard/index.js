@@ -1,13 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import API from '../../api'
 
 const Dashboard = () => {
+  const [productos, setProductos] = useState([])
   const getProductos = async () => {
     try {
       const result = await API.request(
         'https://lulumuebles.com.pe/api/products?output_format=JSON&ws_key=L774Y4FASS9M2WVHEATFK27YJNN9HRGZ'
       )
-      console.log(result)
+      const urls = []
+      result.products.map((e) =>
+        urls.push(
+          `https://lulumuebles.com.pe/api/products/${e.id}?output_format=JSON&ws_key=L774Y4FASS9M2WVHEATFK27YJNN9HRGZ`
+        )
+      )
+      Promise.all(
+        urls.map((request) => {
+          return fetch(request)
+            .then((response) => {
+              return response.json()
+            })
+            .then((data) => {
+              return data
+            })
+        })
+      )
+        .then((values) => {
+          setProductos(values)
+        })
+        .catch(console.error.bind(console))
     } catch (error) {
       console.log(error)
     }
@@ -15,7 +36,18 @@ const Dashboard = () => {
   useEffect(() => {
     getProductos()
   }, [])
-  return <div>Dashboard</div>
+  console.log(productos)
+  return (
+    <div>
+      {productos.map((e) => {
+        return (
+          <div>
+            {e.product.name} - Precio: {e.product.price}
+          </div>
+        )
+      })}
+    </div>
+  )
 }
 
 export default Dashboard
