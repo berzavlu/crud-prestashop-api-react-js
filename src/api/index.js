@@ -1,4 +1,7 @@
 import fetch from 'isomorphic-unfetch'
+import ENV from '../../env'
+
+const { DOMAIN_API, WEBSERVICE_KEY } = ENV[process.env.NODE_ENV]
 
 let controller = new AbortController()
 const { signal } = controller
@@ -11,7 +14,7 @@ class API {
     doSignal = controller.signal
   }
 
-  static request(url, method, body) {
+  static request(path, method, body) {
     const data = {
       method,
       headers: { Accept: 'application/json, text/plain, */*' },
@@ -27,7 +30,10 @@ class API {
     }
 
     return new Promise((resolve, reject) => {
-      fetch(url, data)
+      fetch(
+        `${DOMAIN_API}${path}?output_format=JSON&ws_key=${WEBSERVICE_KEY}`,
+        data
+      )
         .then((response) => {
           if (response.status >= 400) {
             throw new Error('Bad response from server')

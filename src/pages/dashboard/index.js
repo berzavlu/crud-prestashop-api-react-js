@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import API from '../../api'
+import ENV from '../../../env'
+
+const { DOMAIN_API, WEBSERVICE_KEY } = ENV[process.env.NODE_ENV]
 
 const Dashboard = () => {
   const [productos, setProductos] = useState([])
   const getProductos = async () => {
     try {
-      const result = await API.request(
-        'https://lulumuebles.com.pe/api/products?output_format=JSON&ws_key=L774Y4FASS9M2WVHEATFK27YJNN9HRGZ'
-      )
+      const result = await API.request('products')
       const urls = []
       result.products.map((e) =>
         urls.push(
-          `https://lulumuebles.com.pe/api/products/${e.id}?output_format=JSON&ws_key=L774Y4FASS9M2WVHEATFK27YJNN9HRGZ`
+          `${DOMAIN_API}products/${e.id}?output_format=JSON&ws_key=${WEBSERVICE_KEY}`
         )
       )
       Promise.all(
@@ -44,7 +45,7 @@ const Dashboard = () => {
           <div key={i}>
             <img
               style={{ width: '150', height: '150px' }}
-              src={`https://lulumuebles.com.pe/api/images/products/${e.product.id}/${e.product.associations.images[0].id}`}
+              src={`${DOMAIN_API}images/products/${e.product.id}/${e.product.associations.images[0].id}&ws_key=${WEBSERVICE_KEY}`}
               alt='img'
             />
             {e.product.name} - Precio: {e.product.price}
